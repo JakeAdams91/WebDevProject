@@ -3,46 +3,37 @@
     app
     fixed
     clipped
-    stateless
-    class="elevation-3"
-    dark
+    class="marginalize"
+    permanent
   >
-    <v-list>
-      <v-list-tile @click="route('Home')">
-        <v-list-tile-content>
-          <v-list-tile-title>Home</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-
-      <v-list-tile @click="route('Installation')">
-        <v-list-tile-content>
-          <v-list-tile-title>Installation</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-
-      <v-list-tile @click="route('Cheat-Sheet')">
-        <v-list-tile-content>
-          <v-list-tile-title>Cheat Sheet</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
+   <v-btn color="#079408" flat @click="setCategory(null)">Random Deals</v-btn>
+    <v-btn color="#079408" flat v-for="category in categories" :key="category" @click="setCategory(category)"> {{ category }} </v-btn>
   </v-navigation-drawer>
 </template>
 
 <script>
 export default {
   name: 'SideBar',
+  computed: {
+    categories () {
+      return this.$store.getters.categories
+    }
+  },
   methods: {
-    route (path) {
-      if(path === 'Home') {
-        this.$store.commit('setPath', 'Home')
-      } else if(path === 'Installation') {
-        this.$store.commit('setPath', 'Installation Guide')
-      } else {
-        this.$store.commit('setPath', 'Cheat-Sheet')
-      }
-      this.$store.commit('toggleNavigationDisplay')
+    setCategory (category) {
+      this.$store.commit('setSelectedCategory', category)
     }
   }
 }
 </script>
+
+<style>
+  .marginalize {
+    /* 0px 2px 5px black */
+    z-index: 3;
+    box-shadow:  7px 0 5px -5px black !important;
+    padding-left: 0px !important;
+    margin-top: 121px !important;
+    width: 150px !important;
+  }
+</style>

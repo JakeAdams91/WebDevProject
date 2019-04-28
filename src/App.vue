@@ -2,7 +2,7 @@
   <v-app id="app">
     <tool-bar />
     <side-bar />
-    <v-content>
+    <v-content id="padfix">
       <home-page />
       <shopping-cart></shopping-cart>
     </v-content>
@@ -46,5 +46,8 @@ export default {
 </script>
 
 <style>
-
+  #padfix {
+    background-color: #079408 !important;
+    padding-left: 150px !important;
+  }
 </style>
