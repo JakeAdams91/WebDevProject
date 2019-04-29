@@ -1,10 +1,14 @@
 <template>
   <v-app id="app">
     <tool-bar />
-    <side-bar />
+    <!-- <div class="colors"> -->
+      <v-img class="position" :src="require('./assets/palmII.svg')" height="121px" width="150px"></v-img>
+      <side-bar> </side-bar>
+      
+    <!-- </div> -->
     <v-content id="padfix">
       <home-page />
-      <shopping-cart></shopping-cart>
+      <shopping-cart />
     </v-content>
   </v-app>
 </template>
@@ -46,8 +50,23 @@ export default {
 </script>
 
 <style>
+  #app {
+    background-color: #079408 !important;
+  }
   #padfix {
     background-color: #079408 !important;
     padding-left: 150px !important;
+  }
+  /* .colors {
+    background-color: #079408 !important;
+    width: 150px !important;
+  }
+  .staydown {
+    background-color: #ffffff !important;
+    width: 150px !important;
+    margin-top: 121px !important;
+  } */
+  .position {
+    position: sticky !important;
   }
 </style>

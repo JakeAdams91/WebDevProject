@@ -14,8 +14,8 @@ export default {
 
 <style>
   .header {
-    /* background-color: #6b9e6b; */
-    z-index: 3;
+    background-color: #ffffff !important;
+    z-index: 10;
     box-shadow:0px 2px 5px black;
   }
   .headerpic {

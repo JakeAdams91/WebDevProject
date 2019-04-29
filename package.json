@@ -10,7 +10,9 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "material-design-icons": "^3.0.1",
+    "material-icons": "^0.3.1",
     "vue": "^2.6.10",
+    "vue-material-design-icons": "^3.2.0",
     "vuetify": "^1.5.13",
     "vuex": "^3.0.1"
   },
@@ -22,6 +24,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "material-design-icons-iconfont": "^4.0.5",
     "vue-template-compiler": "^2.5.21"
   }
 }

@@ -1,4 +1,7 @@
 <template>
+  <!-- <div>
+    <v-img class="position" :src="require('../assets/palmII.svg')" height="121px" width="150px"></v-img> -->
+  
   <v-navigation-drawer
     app
     fixed
@@ -9,6 +12,7 @@
    <v-btn color="#079408" flat @click="setCategory(null)">Random Deals</v-btn>
     <v-btn color="#079408" flat v-for="category in categories" :key="category" @click="setCategory(category)"> {{ category }} </v-btn>
   </v-navigation-drawer>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -30,10 +34,13 @@ export default {
 <style>
   .marginalize {
     /* 0px 2px 5px black */
-    z-index: 3;
+    z-index: 2;
     box-shadow:  7px 0 5px -5px black !important;
     padding-left: 0px !important;
     margin-top: 121px !important;
     width: 150px !important;
+  }
+  .position {
+    position: sticky !important;
   }
 </style>
