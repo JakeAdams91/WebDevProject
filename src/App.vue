@@ -2,7 +2,7 @@
   <v-app id="app">
     <tool-bar />
     <!-- <div class="colors"> -->
-      <v-img class="position" :src="require('./assets/palmII.svg')" height="121px" width="150px"></v-img>
+      <!-- <v-img class="position" :src="require('./assets/palmII.svg')" height="121px" width="150px"></v-img> -->
       <side-bar> </side-bar>
       
     <!-- </div> -->

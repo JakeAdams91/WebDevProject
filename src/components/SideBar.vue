@@ -9,6 +9,7 @@
     class="marginalize"
     permanent
   >
+  <v-img class="position" :src="require('../assets/palmIII.png')" height="121px" width="150px"></v-img>
    <v-btn color="#079408" flat @click="setCategory(null)">Random Deals</v-btn>
     <v-btn color="#079408" flat v-for="category in categories" :key="category" @click="setCategory(category)"> {{ category }} </v-btn>
   </v-navigation-drawer>
@@ -32,12 +33,15 @@ export default {
 </script>
 
 <style>
+  .margys {
+    margin-top: 121px !important;
+  }
   .marginalize {
-    /* 0px 2px 5px black */
-    z-index: 2;
+    z-index: 10;
     box-shadow:  7px 0 5px -5px black !important;
     padding-left: 0px !important;
-    margin-top: 121px !important;
+    /* margin-top: 121px !important; */
+    height: 100% !important;
     width: 150px !important;
   }
   .position {
