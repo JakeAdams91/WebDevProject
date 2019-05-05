@@ -1,10 +1,14 @@
 <template>
+  <!-- display 1 item -->
   <v-card class="shadow">
+    <!-- product title -->
     <v-card-title class="font-weight-black">
       {{ product.title }}
     </v-card-title>
+    <!-- product image -->
     <v-img :src="product.img"></v-img>
     <v-divider dark/>
+    <!-- display price and amount bought on same line -->
     <v-layout row>
       <v-flex xs6>
         <v-card-title class="font-weight-bold subheading">{{ product.price | currencyFmt }}</v-card-title>
@@ -13,6 +17,7 @@
         <v-card-title class="font-weight-bold subheading">Qty: {{ product.qty }}</v-card-title>
       </v-flex>
     </v-layout>
+    <!-- remove from cart button -->
     <v-btn
       color="error"
       class="font-weight-bold"
@@ -20,17 +25,6 @@
       @click="removeCartItem(product)">
       remove
     </v-btn>
-    <!-- <v-slide-y-transition>
-      <v-card-text v-show="show"
-        class="font-weight-black">{{ product.description }}</v-card-text>
-    </v-slide-y-transition> -->
-    <!-- <v-btn
-      v-show="product.stock > 0"
-      flat
-      class="fonty"
-      @click="addToCart(product)">
-      Add To Cart
-    </v-btn> -->
   </v-card>
 </template>
 
@@ -38,11 +32,13 @@
 export default {
   name: 'CartList',
   methods: {
+    // removes item from cart, if more than 1 item decrements the quantity
     removeCartItem (product) {
       this.$store.commit('removeCartItem', product)
     }
   },
   props: {
+    // receives the product to be displayed from Parent (ShoppingCart.vue)
     product: {
       type: Object,
       required: true

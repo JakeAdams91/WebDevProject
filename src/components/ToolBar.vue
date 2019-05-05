@@ -2,14 +2,18 @@
   <v-toolbar
     extended
     class="header">
+    <!-- Logo -->
     <img class="headerpic" width="300" height="100" :src="require('../assets/congoIII.png')" />
-
-    <p v-if="showCart"> total: {{ getCartPrice | currencyFmt }} </p>
+    <!-- adds total price to header when viewing shopping cart -->
+    <v-spacer v-if="showCart && getCartPrice > 0" />
+    <p v-if="showCart && getCartPrice > 0" class="positioning font-weight-bold subheading"> total: {{ getCartPrice | currencyFmt }} </p>
+    <!-- shopping cart icon -->
     <v-spacer v-if="this.$vuetify.breakpoint.smAndUp"></v-spacer>
       <v-btn v-if="this.$vuetify.breakpoint.smAndUp" class="fonty" @click="toggleCart" flat icon>
         <v-icon>shopping_cart</v-icon>
       </v-btn>
-
+    <!-- small screen html compresses side
+      bar into a hamburger icon and positions them -->
     <template
       v-if="this.$vuetify.breakpoint.xsOnly"
       v-slot:extension>
@@ -41,9 +45,7 @@
           </v-list-tile>
         </v-list>
       </v-menu>
-      
     </template>
-
  </v-toolbar>
 </template>
 
@@ -51,20 +53,25 @@
 export default {
   name: 'ToolBar',
   computed: {
+    // returns list of all categories
     categories () {
       return this.$store.getters.categories
     },
+    // returns whether the user is viewing cart or not
     showCart () {
       return this.$store.getters.toggleCart
     },
+    // returns the sum of all items in shopping cart
     getCartPrice () {
       return this.$store.getters.getCartPrice
     }
   },
   methods: {
+    // turns the cart display on and off
     toggleCart () {
       this.$store.commit('toggleCart', null)
     },
+    // when user selects a category to browse.
     setCategory (category) {
       this.$store.commit('setSelectedCategory', category)
       this.$store.commit('toggleCart', false)
@@ -74,6 +81,10 @@ export default {
 </script>
 
 <style>
+  /*
+  smart phones and down
+  center logo, and give it fixed position
+  */
   @media only screen and (max-width: 600px) {
     .header {
       z-index: 10;
@@ -85,10 +96,11 @@ export default {
       margin-left: auto !important;
       margin-right: auto !important;
     }
-    .liststyle:hover {
-      background-color: yellow !important;
-    }
   }
+  /* 
+  medium screens, these styles correct mid-size issues
+  such as the header being under-sized
+  */
   @media only screen and (min-width: 600px) {
     .header {
       z-index: 10;
@@ -101,7 +113,14 @@ export default {
       margin-top: 45px !important;
       margin-left: 15px !important;
     }
+    .positioning {
+      margin-top: 115px !important;
+      /* margin-left: 200px !important; */
+    }
   }
+  /*
+  large size // desktop screens
+  */
   @media only screen and (min-width: 960px) {
     .header {
       z-index: 10;
@@ -112,6 +131,10 @@ export default {
       display: block;
       margin-top: 45px !important;
       margin-left: 15px !important;
+    }
+    .positioning {
+      margin-top: 115px !important;
+      margin-left: 380px !important;
     }
   }
 </style>

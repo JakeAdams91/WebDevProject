@@ -1,15 +1,22 @@
 <template>
+<!-- vuetify wrapper -->
   <v-app id="app">
+    <!-- toolbar (header) -->
     <tool-bar />
-      <side-bar v-if="this.$vuetify.breakpoint.smAndUp" />
+    <!-- side navigation -->
+    <side-bar v-if="this.$vuetify.breakpoint.smAndUp" />
+    <!-- main-content div -->
     <v-content id="padfix">
+      <!-- home-page -->
       <home-page v-if="!showCart" />
+      <!-- shopping-cart -->
       <shopping-cart v-if="showCart"/>
     </v-content>
   </v-app>
 </template>
 
 <script>
+// import necessary children
 import ToolBar from './components/ToolBar.vue'
 import SideBar from './components/SideBar'
 import HomePage from './components/HomePage.vue'
@@ -17,26 +24,9 @@ import ShoppingCart from './components/ShoppingCart.vue'
 export default {
   name: 'app',
   computed: {
-    getProducts () {
-      return this.$store.getters.getProducts
-    },
+    // returns whether or not user is viewing cart
     showCart () {
       return this.$store.getters.toggleCart
-    },
-    getCart () {
-      return this.$store.getters.getCart
-    },
-    getCategories () {
-      return this.$store.getters.categories
-    },
-    getDealsOfDay () {
-      return this.$store.getters.dealsOfDay
-    },
-    getProductsByCategory () {
-      return this.$store.getters.productsByCategory
-    },
-    SelectedProducts () {
-      return this.$store.getters.selectedProducts
     }
   },
   components: {

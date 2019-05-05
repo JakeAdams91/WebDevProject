@@ -78,6 +78,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    // toggles shopping cart state
     toggleCart (state, toggle) {
       if (toggle === null) {
         state.toggleCart = !state.toggleCart
@@ -85,6 +86,7 @@ export default new Vuex.Store({
         state.toggleCart = toggle
       }
     },
+    // sets user specified category
     setSelectedCategory (state, category) {
       state.selectedCategory = category
     },
@@ -106,7 +108,7 @@ export default new Vuex.Store({
       tempProducts.push(product)
       state.products = tempProducts
     },
-    // remove item from shopping cart
+    // remove item from shopping cart, returning the stock and qty levels.
     removeCartItem: (state, product) => {
       let index = state.cart.indexOf(product)
       if (product.qty > 1) {
