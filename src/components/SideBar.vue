@@ -1,7 +1,4 @@
 <template>
-  <!-- <div>
-    <v-img class="position" :src="require('../assets/palmII.svg')" height="121px" width="150px"></v-img> -->
-  
   <v-navigation-drawer
     app
     fixed
@@ -10,10 +7,9 @@
     permanent
   >
   <v-img class="position" :src="require('../assets/palmIII.png')" height="121px" width="150px"></v-img>
-   <v-btn color="#079408" flat @click="setCategory(null)">Random Deals</v-btn>
-    <v-btn color="#079408" flat v-for="category in categories" :key="category" @click="setCategory(category)"> {{ category }} </v-btn>
+   <v-btn class="font-weight-bold subheading fix-layout" flat @click="setCategory(null)">Random Deals</v-btn>
+    <v-btn class="font-weight-bold subheading" flat v-for="category in categories" :key="category" @click="setCategory(category)"> {{ category }} </v-btn>
   </v-navigation-drawer>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -27,13 +23,18 @@ export default {
   methods: {
     setCategory (category) {
       this.$store.commit('setSelectedCategory', category)
+      this.$store.commit('toggleCart', false)
     }
   }
 }
 </script>
 
 <style>
-  .margys {
+  #app > div > aside > button.font-weight-bold.subheading.fix-layout.v-btn.v-btn--flat.theme--light {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .margys  {
     margin-top: 121px !important;
   }
   .marginalize {

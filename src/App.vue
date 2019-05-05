@@ -1,14 +1,10 @@
 <template>
   <v-app id="app">
     <tool-bar />
-    <!-- <div class="colors"> -->
-      <!-- <v-img class="position" :src="require('./assets/palmII.svg')" height="121px" width="150px"></v-img> -->
-      <side-bar> </side-bar>
-      
-    <!-- </div> -->
+      <side-bar v-if="this.$vuetify.breakpoint.smAndUp" />
     <v-content id="padfix">
-      <home-page />
-      <shopping-cart />
+      <home-page v-if="!showCart" />
+      <shopping-cart v-if="showCart"/>
     </v-content>
   </v-app>
 </template>
@@ -23,6 +19,9 @@ export default {
   computed: {
     getProducts () {
       return this.$store.getters.getProducts
+    },
+    showCart () {
+      return this.$store.getters.toggleCart
     },
     getCart () {
       return this.$store.getters.getCart
@@ -53,19 +52,20 @@ export default {
   #app {
     background-color: #079408 !important;
   }
-  #padfix {
-    background-color: #079408 !important;
-    padding-left: 150px !important;
+  /* Small screens remove padding and the side-bar */
+  @media only screen and (max-width: 600px) {
+    #padfix {
+      background-color: #079408 !important;
+      margin-top: 112px !important;
+    }
   }
-  /* .colors {
-    background-color: #079408 !important;
-    width: 150px !important;
+  /* all other screen sizes display side-bar */
+  @media only screen and (min-width: 600px) {
+    #padfix {
+      background-color: #079408 !important;
+      padding-left: 150px !important;
+    }
   }
-  .staydown {
-    background-color: #ffffff !important;
-    width: 150px !important;
-    margin-top: 121px !important;
-  } */
   .position {
     position: sticky !important;
   }

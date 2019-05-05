@@ -28,6 +28,7 @@ export default {
       return this.$store.getters.selectedProducts
     },
     gridColumns () {
+      // If selected Category
       if (this.selectedProducts.length > 0) {
         let i = 0
       let j = 0
@@ -60,6 +61,7 @@ export default {
         return columns
         }
       }
+      // If displaying Random Deals.
       else {
         let i = 0
         let j = 0
