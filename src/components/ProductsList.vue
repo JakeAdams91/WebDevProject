@@ -5,8 +5,11 @@
     <v-card-title class="font-weight-bold subheading">
       {{ product.title }}
     </v-card-title>
-    <!-- display product image -->
-    <v-img :src="product.img"></v-img>
+    <!-- display product images, sizing based on screen. -->
+    <v-img v-if="this.$vuetify.breakpoint.xs" :src="product.img" width="" height=""></v-img>
+    <v-img v-if="this.$vuetify.breakpoint.smOnly" :src="product.img" width="" height="200"></v-img>
+    <v-img v-if="this.$vuetify.breakpoint.mdOnly" :src="product.img" width="" height="225"></v-img>
+    <v-img v-if="this.$vuetify.breakpoint.lgAndUp" :src="product.img" width="" height="250"></v-img>
     <v-divider dark/>
     
     <v-layout row @click="show = !show">

@@ -1,6 +1,8 @@
 <template>
   <div>
     <!-- create grid  -->
+    <h1 v-if="getCart.length > 0" class="white--text text-xs-center mt-3">Your Cart </h1>
+    <h2 v-if="getCart.length > 0" class="white--text text-xs-center mt-3">Total: {{ getCartPrice | currencyFmt }}</h2>
     <v-container grid-list-md>
       <v-layout>
         <!-- for loop over Grid Columns function (create columns) -->

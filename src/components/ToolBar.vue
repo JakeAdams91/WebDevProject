@@ -4,9 +4,6 @@
     class="header">
     <!-- Logo -->
     <img class="headerpic" width="300" height="100" :src="require('../assets/congoIII.png')" />
-    <!-- adds total price to header when viewing shopping cart -->
-    <v-spacer v-if="showCart && getCartPrice > 0" />
-    <p v-if="showCart && getCartPrice > 0" class="positioning font-weight-bold subheading"> total: {{ getCartPrice | currencyFmt }} </p>
     <!-- shopping cart icon -->
     <v-spacer v-if="this.$vuetify.breakpoint.smAndUp"></v-spacer>
       <v-btn v-if="this.$vuetify.breakpoint.smAndUp" class="fonty" @click="toggleCart" flat icon>
@@ -60,10 +57,6 @@ export default {
     // returns whether the user is viewing cart or not
     showCart () {
       return this.$store.getters.toggleCart
-    },
-    // returns the sum of all items in shopping cart
-    getCartPrice () {
-      return this.$store.getters.getCartPrice
     }
   },
   methods: {
@@ -113,10 +106,6 @@ export default {
       margin-top: 45px !important;
       margin-left: 15px !important;
     }
-    .positioning {
-      margin-top: 115px !important;
-      /* margin-left: 200px !important; */
-    }
   }
   /*
   large size // desktop screens
@@ -131,10 +120,6 @@ export default {
       display: block;
       margin-top: 45px !important;
       margin-left: 15px !important;
-    }
-    .positioning {
-      margin-top: 115px !important;
-      margin-left: 380px !important;
     }
   }
 </style>
