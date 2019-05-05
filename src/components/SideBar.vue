@@ -27,6 +27,7 @@ export default {
   methods: {
     // when user selects category, this function sets it
     setCategory (category) {
+      window.scrollTo(0,0)
       this.$store.commit('setSelectedCategory', category)
       this.$store.commit('toggleCart', false)
     }

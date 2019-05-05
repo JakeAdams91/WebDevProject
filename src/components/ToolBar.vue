@@ -62,10 +62,12 @@ export default {
   methods: {
     // turns the cart display on and off
     toggleCart () {
+      window.scrollTo(0,0)
       this.$store.commit('toggleCart', null)
     },
     // when user selects a category to browse.
     setCategory (category) {
+      window.scrollTo(0,0)
       this.$store.commit('setSelectedCategory', category)
       this.$store.commit('toggleCart', false)
     }
