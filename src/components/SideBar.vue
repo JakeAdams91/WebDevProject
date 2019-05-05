@@ -7,8 +7,8 @@
     permanent
   >
   <v-img class="position" :src="require('../assets/palmIII.png')" height="121px" width="150px"></v-img>
-   <v-btn class="font-weight-bold subheading fix-layout" flat @click="setCategory(null)">Random Deals</v-btn>
-    <v-btn class="font-weight-bold subheading" flat v-for="category in categories" :key="category" @click="setCategory(category)"> {{ category }} </v-btn>
+  <v-btn class="font-weight-bold subheading fix-layout" flat @click="setCategory(null)">Random Deals</v-btn>
+  <v-btn class="font-weight-bold subheading" flat v-for="category in categories" :key="category" @click="setCategory(category)"> {{ category }} </v-btn>
   </v-navigation-drawer>
 </template>
 

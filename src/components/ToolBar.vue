@@ -4,10 +4,12 @@
     class="header">
     <img class="headerpic" width="300" height="100" :src="require('../assets/congoIII.png')" />
 
+    <p v-if="showCart"> total: {{ getCartPrice | currencyFmt }} </p>
     <v-spacer v-if="this.$vuetify.breakpoint.smAndUp"></v-spacer>
       <v-btn v-if="this.$vuetify.breakpoint.smAndUp" class="fonty" @click="toggleCart" flat icon>
         <v-icon>shopping_cart</v-icon>
       </v-btn>
+
     <template
       v-if="this.$vuetify.breakpoint.xsOnly"
       v-slot:extension>
@@ -51,6 +53,12 @@ export default {
   computed: {
     categories () {
       return this.$store.getters.categories
+    },
+    showCart () {
+      return this.$store.getters.toggleCart
+    },
+    getCartPrice () {
+      return this.$store.getters.getCartPrice
     }
   },
   methods: {
@@ -82,6 +90,19 @@ export default {
     }
   }
   @media only screen and (min-width: 600px) {
+    .header {
+      z-index: 10;
+      height: 121px !important;
+    }
+    .headerpic {
+      width: 300px !important;
+      height: 100px !important;
+      display: block;
+      margin-top: 45px !important;
+      margin-left: 15px !important;
+    }
+  }
+  @media only screen and (min-width: 960px) {
     .header {
       z-index: 10;
     }

@@ -1,6 +1,5 @@
 <template>
   <v-card class="shadow">
-
     <v-card-title class="font-weight-bold subheading">
       {{ product.title }}
 
@@ -10,7 +9,7 @@
     <v-divider dark/>
     <v-layout row @click="show = !show">
       <v-flex xs10>
-        <v-card-title class="font-weight-bold subheading">{{ product.price }}</v-card-title>
+        <v-card-title class="font-weight-bold subheading">{{ product.price | currencyFmt }}</v-card-title>
       </v-flex>
       <v-flex xs2 class="mr-3">
         <v-btn icon >
@@ -29,11 +28,11 @@
     <v-btn
       color="#079408"
       v-show="product.stock > 0"
-      bold
-      icon
+      class="font-weight-bold"
       flat
       @click="addToCart(product)">
-      <v-icon>add_shopping_cart</v-icon>
+      add to cart
+      <!-- icon <v-icon>add_shopping_cart</v-icon> -->
     </v-btn>
   </v-card>
 </template>

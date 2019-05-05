@@ -6,16 +6,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cart: [],
+    cartPrice: 0,
     toggleCart: false,
     selectedCategory: null,
     products: [
-      { qty: 1, sku: '001', img: require('./assets/pvs14.jpg'), title: 'Night Vision Goggles', category: 'Gadgets', price: '3,299.99', stock: '15', description: 'ATNs PVS14 are rugged, lightweight and versatile Night Vision Monocular designed for the most demanding of nighttime applications. The ATN PVS14 can be handheld, head/helmet-mounted for hands free usage or adapted to cameras/camcorders. Originally designed for the U.S. military, these units are of the highest quality in optics, design and functionality. The ATN PVS14 is an outstanding choice for professional Night Vision applications.' },
-      { qty: 1, sku: '002', img: require('./assets/couch.jpg'), title: 'Superb Couch', category: 'Home', price: '1500.00', stock: '2', description: 'Talk about fine lines and great curves. That’s the beauty of the Darcy sofa—made to suit your appreciation for clean, contemporary style. A striking flared frame, comfy pillow top armrests and ultra-soft upholstery complete this fashion statement.' },
-      { qty: 1, sku: '003', img: require('./assets/spoons.jpg'), title: 'High Polymer Spoon set', category: 'Home', price: '15.99', stock: '100', description: 'This hardy spoon might not look like much, but it is crafted of the highest grade polymers found in modern military weapons. Comes in a set of 5,000 tactical spoons' },
-      { qty: 1, sku: '004', img: require('./assets/endtable.jpg'), title: 'Solid Wood End Table', category: 'Home', price: '385.00', stock: '5', description: 'Solid wood End table, hand crafted using techniques passed down through the centuries, this piece is masterfully crafted using artisan wood joinery techniques such as Mortise and Tenons, and through mortise breadboards' },
-      { qty: 1, sku: '005', img: require('./assets/entrytable.jpg'), title: 'Rustic Entry Table', category: 'Home', price: '400.00', stock: '15', description: '100% hardwood Entry table, hand crafted using techniques passed down through the centuries, this piece is masterfully crafted using artisan wood joinery techniques such as Mortise and Tenons, and through mortise breadboards' },
-      { qty: 1, sku: '006', img: require('./assets/entrytableII.jpg'), title: 'Painted entry Table', category: 'Home', price: '475.00', stock: '6', description: '100% hardwood Entry table whitewashed for that rustic old time look. hand crafted using techniques passed down through the centuries, this piece is masterfully crafted using artisan wood joinery techniques such as Mortise and Tenons, and through mortise breadboards' },
-      { qty: 1, sku: '007', img: require('./assets/knifeblock.jpg'), title: 'Magnetic KnifeBlock', category: 'Home', price: '185.00', stock: '32', description: 'Custom hardwood knifeblocks utilizing neodymium magnets to keep your knives secure all while looking incredibly stylish' }
+      { qty: 1, sku: '001', img: require('./assets/pvs14.jpg'), title: 'Night Vision Goggles', category: 'Gadgets', price: 3299.99, stock: '15', description: 'ATNs PVS14 are rugged, lightweight and versatile Night Vision Monocular designed for the most demanding of nighttime applications. The ATN PVS14 can be handheld, head/helmet-mounted for hands free usage or adapted to cameras/camcorders. Originally designed for the U.S. military, these units are of the highest quality in optics, design and functionality. The ATN PVS14 is an outstanding choice for professional Night Vision applications.' },
+      { qty: 1, sku: '002', img: require('./assets/couch.jpg'), title: 'Superb Couch', category: 'Home', price: 1500.00, stock: '2', description: 'Talk about fine lines and great curves. That’s the beauty of the Darcy sofa—made to suit your appreciation for clean, contemporary style. A striking flared frame, comfy pillow top armrests and ultra-soft upholstery complete this fashion statement.' },
+      { qty: 1, sku: '003', img: require('./assets/spoons.jpg'), title: 'High Polymer Spoon set', category: 'Home', price: 15.99, stock: '100', description: 'This hardy spoon might not look like much, but it is crafted of the highest grade polymers found in modern military weapons. Comes in a set of 5,000 tactical spoons' },
+      { qty: 1, sku: '004', img: require('./assets/endtable.jpg'), title: 'Solid Wood End Table', category: 'Home', price: 385.00, stock: '5', description: 'Solid wood End table, hand crafted using techniques passed down through the centuries, this piece is masterfully crafted using artisan wood joinery techniques such as Mortise and Tenons, and through mortise breadboards' },
+      { qty: 1, sku: '005', img: require('./assets/entrytable.jpg'), title: 'Rustic Entry Table', category: 'Home', price: 400.00, stock: '15', description: '100% hardwood Entry table, hand crafted using techniques passed down through the centuries, this piece is masterfully crafted using artisan wood joinery techniques such as Mortise and Tenons, and through mortise breadboards' },
+      { qty: 1, sku: '006', img: require('./assets/entrytableII.jpg'), title: 'Painted entry Table', category: 'Home', price: 475.00, stock: '6', description: '100% hardwood Entry table whitewashed for that rustic old time look. hand crafted using techniques passed down through the centuries, this piece is masterfully crafted using artisan wood joinery techniques such as Mortise and Tenons, and through mortise breadboards' },
+      { qty: 1, sku: '007', img: require('./assets/knifeblock.jpg'), title: 'Magnetic KnifeBlock', category: 'Home', price: 185.00, stock: '32', description: 'Custom hardwood knifeblocks utilizing neodymium magnets to keep your knives secure all while looking incredibly stylish' }
       // { qty: 1, sku: '008', img: require('./assets/'), title: '', category: '', price: '', stock: '', description: '' },
       // { qty: 1, sku: '009', img: require('./assets/'), title: '', category: '', price: '', stock: '', description: '' },
       // { qty: 1, sku: '010', img: require('./assets/'), title: '', category: '', price: '', stock: '', description: '' },
@@ -47,6 +48,9 @@ export default new Vuex.Store({
     },
     getCart (state) {
       return state.cart
+    },
+    getCartPrice (state) {
+      return state.cartPrice
     },
     toggleCart (state) {
       return state.toggleCart
@@ -89,8 +93,10 @@ export default new Vuex.Store({
       let tempArr = state.cart.findIndex(prod => product.sku === prod.sku)
       if (tempArr > -1) {
         state.cart[tempArr].qty += 1
+        state.cartPrice += product.price
       } else {
         state.cart.push(product)
+        state.cartPrice += product.price
       }
     },
     // reduce stock count
@@ -103,7 +109,13 @@ export default new Vuex.Store({
     // remove item from shopping cart
     removeCartItem: (state, product) => {
       let index = state.cart.indexOf(product)
-      if (index > -1) {
+      if (product.qty > 1) {
+        state.cartPrice -= state.cart[index].price
+        state.cart[index].stock += 1
+        state.cart[index].qty -= 1
+      } else if (index > -1) {
+        state.cartPrice -= state.cart[index].price
+        state.cart[index].stock += 1
         state.cart.splice(index, 1)
       }
     }

@@ -13,6 +13,11 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <v-card>
+      <v-card-title 
+        v-if="getCartPrice > 0"
+        class="font-weight-bold subheading">total: {{ getCartPrice | currencyFmt }}</v-card-title>
+    </v-card>
     <div v-if="getCart.length <= 0"
       class="text-xs-center">
       <h1 class="white--text">Your shopping cart is empty, please order something</h1>
@@ -26,6 +31,9 @@ import CartList from './CartList'
 export default {
   name: 'ShoppingCart',
   computed: {
+    getCartPrice () {
+      return this.$store.getters.getCartPrice
+    },
     getCart () {
       return this.$store.getters.getCart
     },
@@ -66,13 +74,6 @@ export default {
     toggleCart () {
       this.$store.commit('toggleCart', false)
     } 
-  },
-  filters: {
-    percentFmt (number) {
-      let percent = number * 100
-      let percentStr = `${percent}%`
-      return percentStr
-    }
   },
   components: {
     CartList

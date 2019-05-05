@@ -9,6 +9,9 @@ Vue.config.productionTip = false
 Vue.use(Vuetify, {
   iconfont: 'md'
 })
+Vue.filter('currencyFmt', (number) => {
+  return number.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+})
 new Vue({
   store,
   render: h => h(App)
