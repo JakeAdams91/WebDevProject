@@ -42,7 +42,7 @@ export default {
   }
   /* styles for the navigation drawer */
   .marginalize {
-    z-index: 10;
+    z-index: 5;
     box-shadow:  7px 0 5px -5px black !important;
     padding-left: 0px !important;
     /* margin-top: 121px !important; */
